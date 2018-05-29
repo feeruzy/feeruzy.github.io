@@ -1,3 +1,8 @@
+$gr0: #80CBC4;
+$gr1: #26A69A;
+$gr2: #00897B;
+$gr3: #00796B;
+
 html,
 body {
     width: 100%;
@@ -5,21 +10,25 @@ body {
     overflow: hidden;
     direction: rlt;
     font-family: "vazir", Arial, Helvetica, sans-serif;
-    background: whitesmoke;
+    background-image: url(../img/bg.png);
+    background-color:  whitesmoke;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #card {
-    margin: 10vh 5px;
+    margin: 2vh 5px;
     padding: 0;
-    height: 80vh;
-    max-width: 360px;
+    height: 96vh;
     text-align: center;
+    box-shadow: 0 0 15px -1px $gr0;
     .card-top {
         margin: 0;
         padding: 0;
-        height: 17vh;
-        background: #1E88E5;
-        border: 2px solid #1976D2;
+        height: 16vh;
+        background: $gr3;
+        border: 2px solid $gr2;
         border-bottom: none;
         border-radius: 5px 5px 0 0;
     }
@@ -34,19 +43,19 @@ body {
         img {
             width: 100%;
             border-radius: 50%;
-            border: 4px solid #1976D2;
+            border: 3px solid $gr2;
         }
     }
     .card-body {
-        height: 63vh;
-        background: white;
+        height: 80vh;
+        background: rgba(255, 255, 255, .4);
         color: #565656;
-        border: 2px solid #1976D2;
+        border: 2px solid $gr2;
         border-top: none;
         border-radius: 0 0 5px 5px;
         h1 {
-            margin-top: 8vh;
-            text-shadow: 1px 1px 3px #1E88E5;
+            margin-top: 10vh;
+            text-shadow: 1px 1px 3px $gr1;
             border-bottom: 2px dashed whitesmoke;
         }
         .social {
@@ -79,14 +88,14 @@ body {
             }
         }
         .description {
-            margin-top: 2vh;
+            margin-top: 1vh;
             padding: 1vh;
             direction: rtl;
             text-align: justify;
             font-size: 11pt;
             line-height: 1.75;
             strong {
-                color: #1E88E5;
+                color: $gr3;
             }
         }
         .footer {
@@ -94,12 +103,126 @@ body {
             a {
                 margin: 0 1vh;
                 text-decoration: none;
+                color: $gr3;
+                &:hover {
+                    color: $gr2;
+                }
             }
         }
     }
 }
 
-.b {
-    border: 1px solid red;
-    background: lightpink;
+@media (min-width: 360px) {
+    #card {
+        margin: 5vh 5px;
+        height: 90vh; 
+        max-width: 360px;
+
+        
+        .card-top {
+            height: 17vh;
+        }
+        .card-body {
+            height: 73vh;
+            
+            h1 {
+                margin-top: 8vh;
+            }
+            
+            .description {
+                margin-top: 1vh;
+                padding: 1vh;
+                line-height: 1.9;
+            }
+            .footer {
+                margin-top: 4vh;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {
+
+    #card {
+        margin: 15vh 5px;
+        height: 70vh; 
+        
+        .card-top {
+            height: 15vh;
+        }
+        .card-body {
+            height: 55vh;
+            
+            h1 {
+                margin-top: 6vh;
+            }
+            .social {
+                a {
+                    margin: .5vh;
+                }
+            }
+            .description {
+                margin-top: 1vh;
+                padding: 1vh;
+                line-height: 1.9;
+            }
+            .footer {
+                margin-top: 4vh;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+
+    #card {
+        margin: 15vh 5px;
+        height: 70vh; 
+
+        .card-top {
+            height: 15vh;
+        }
+        .card-body {
+            height: 55vh;
+            
+            h1 {
+                margin-top: 6vh;
+            }
+            .description {
+                margin-top: 1vh;
+                padding: 1vh;
+                line-height: 2;
+            }
+            .footer {
+                margin-top: 4vh;
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+
+    #card {
+        margin: 20vh 5px;
+        height: 60vh; 
+
+        .card-top {
+            height: 13vh;
+        }
+        .card-body {
+            height: 47vh;
+            
+            h1 {
+                margin-top: 6vh;
+            }
+            .description {
+                margin-top: 1vh;
+                padding: 1vh;
+                line-height: 2;
+            }
+            .footer {
+                margin-top: 4vh;
+            }
+        }
+    }
 }

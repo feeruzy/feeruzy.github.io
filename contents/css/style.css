@@ -5,23 +5,27 @@ body {
   overflow: hidden;
   direction: rlt;
   font-family: "vazir", Arial, Helvetica, sans-serif;
-  background: whitesmoke;
+  background-image: url(../img/bg.png);
+  background-color: whitesmoke;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #card {
-  margin: 10vh 5px;
+  margin: 2vh 5px;
   padding: 0;
-  height: 80vh;
-  max-width: 360px;
+  height: 96vh;
   text-align: center;
+  box-shadow: 0 0 15px -1px #80CBC4;
 }
 
 #card .card-top {
   margin: 0;
   padding: 0;
-  height: 17vh;
-  background: #1E88E5;
-  border: 2px solid #1976D2;
+  height: 16vh;
+  background: #00796B;
+  border: 2px solid #00897B;
   border-bottom: none;
   border-radius: 5px 5px 0 0;
 }
@@ -39,21 +43,21 @@ body {
 #card .card-picture img {
   width: 100%;
   border-radius: 50%;
-  border: 4px solid #1976D2;
+  border: 3px solid #00897B;
 }
 
 #card .card-body {
-  height: 63vh;
-  background: white;
+  height: 80vh;
+  background: rgba(255, 255, 255, 0.4);
   color: #565656;
-  border: 2px solid #1976D2;
+  border: 2px solid #00897B;
   border-top: none;
   border-radius: 0 0 5px 5px;
 }
 
 #card .card-body h1 {
-  margin-top: 8vh;
-  text-shadow: 1px 1px 3px #1E88E5;
+  margin-top: 10vh;
+  text-shadow: 1px 1px 3px #26A69A;
   border-bottom: 2px dashed whitesmoke;
 }
 
@@ -96,7 +100,7 @@ body {
 }
 
 #card .card-body .description {
-  margin-top: 2vh;
+  margin-top: 1vh;
   padding: 1vh;
   direction: rtl;
   text-align: justify;
@@ -105,7 +109,7 @@ body {
 }
 
 #card .card-body .description strong {
-  color: #1E88E5;
+  color: #00796B;
 }
 
 #card .card-body .footer {
@@ -115,10 +119,110 @@ body {
 #card .card-body .footer a {
   margin: 0 1vh;
   text-decoration: none;
+  color: #00796B;
 }
 
-.b {
-  border: 1px solid red;
-  background: lightpink;
+#card .card-body .footer a:hover {
+  color: #00897B;
+}
+
+@media (min-width: 360px) {
+  #card {
+    margin: 5vh 5px;
+    height: 90vh;
+    max-width: 360px;
+  }
+  #card .card-top {
+    height: 17vh;
+  }
+  #card .card-body {
+    height: 73vh;
+  }
+  #card .card-body h1 {
+    margin-top: 8vh;
+  }
+  #card .card-body .description {
+    margin-top: 1vh;
+    padding: 1vh;
+    line-height: 1.9;
+  }
+  #card .card-body .footer {
+    margin-top: 4vh;
+  }
+}
+
+@media (min-width: 576px) {
+  #card {
+    margin: 15vh 5px;
+    height: 70vh;
+  }
+  #card .card-top {
+    height: 15vh;
+  }
+  #card .card-body {
+    height: 55vh;
+  }
+  #card .card-body h1 {
+    margin-top: 6vh;
+  }
+  #card .card-body .social a {
+    margin: .5vh;
+  }
+  #card .card-body .description {
+    margin-top: 1vh;
+    padding: 1vh;
+    line-height: 1.9;
+  }
+  #card .card-body .footer {
+    margin-top: 4vh;
+  }
+}
+
+@media (min-width: 768px) {
+  #card {
+    margin: 15vh 5px;
+    height: 70vh;
+  }
+  #card .card-top {
+    height: 15vh;
+  }
+  #card .card-body {
+    height: 55vh;
+  }
+  #card .card-body h1 {
+    margin-top: 6vh;
+  }
+  #card .card-body .description {
+    margin-top: 1vh;
+    padding: 1vh;
+    line-height: 2;
+  }
+  #card .card-body .footer {
+    margin-top: 4vh;
+  }
+}
+
+@media (min-width: 1200px) {
+  #card {
+    margin: 20vh 5px;
+    height: 60vh;
+  }
+  #card .card-top {
+    height: 13vh;
+  }
+  #card .card-body {
+    height: 47vh;
+  }
+  #card .card-body h1 {
+    margin-top: 6vh;
+  }
+  #card .card-body .description {
+    margin-top: 1vh;
+    padding: 1vh;
+    line-height: 2;
+  }
+  #card .card-body .footer {
+    margin-top: 4vh;
+  }
 }
 /*# sourceMappingURL=style.css.map */
