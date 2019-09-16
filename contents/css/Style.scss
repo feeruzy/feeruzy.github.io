@@ -1,0 +1,132 @@
+// @font-face {
+//     font-family: 'Bree Serif';
+//     font-style: normal;
+//     font-weight: 400;
+//     font-display: swap;
+//     src: url('../font/bree.woff2') format('woff2');
+// }
+
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
+
+$color1: rgba(43, 120, 194, 1);
+$color2: rgba(255, 145, 0, 1);
+$color3: rgba(46, 64, 87, 1);
+$color4: rgba(74, 185, 0, 1);
+$color5: rgba(47, 45, 46, 1);
+
+$linkedin: #0077B5;
+$github: #2fdd63;
+$gmail: #dd4b39;
+$wordpress:#85878d;
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    direction: rlt;
+    font-family: 'Bree Serif', Arial, Helvetica, sans-serif;
+    background-color: $color3;
+}
+
+#card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -175px;
+
+    width: 350px;
+    height: 200px;
+
+    box-shadow: 0 0 15px -1px $color5;
+    border-radius: 5px;
+
+    .logo {
+        border-radius: 5px 0 0 5px;
+        background: $color1;
+
+        img {
+            border: 5px solid $color5;
+            border-radius: 10%;
+            opacity: .8;
+
+            &:hover {
+                opacity: .9;
+            }
+        }
+    }
+
+    .info {
+        border-radius: 0 5px 5px 0;
+
+        div {
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 22pt;
+            text-shadow: 0 0 2px $color5;
+        }
+
+        h2 {
+            opacity: .8;
+            font-size: 14pt;
+            text-shadow: 0 0 1px $color5;
+        }
+
+        color: $color1;
+        background: $color5;
+    }
+}
+
+.social {
+    border-top: 1px solid $color3;
+    margin-top: 2vh;
+    padding-top: 1vh;
+    font-size: x-large;
+    text-shadow: 0 0 1px $color5;
+
+    a {
+        margin: 1vh;
+        text-decoration: none;
+        opacity: .7;
+
+        // &.twitter { color: $twitter; }
+        &.linkedin {
+            color: $linkedin;
+        }
+
+        // &.instagram { color: $instagram; }
+        &.github {
+            color: $github;
+        }
+
+        &.gmail {
+            color: $gmail;
+        }
+
+        &.wordpress {
+            color: $wordpress;
+        }
+
+        &:hover {
+            opacity: 1;
+            text-shadow: 0 0 3px $color5;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    #card {
+        margin-top: -100px;
+        margin-left: -225px;
+        width: 450px;
+        height: 200px;
+
+        .info {
+            border-left: 1px solid $color1;
+        }
+    }
+}

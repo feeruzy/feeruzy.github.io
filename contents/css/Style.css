@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css?family=Bree+Serif&display=swap");
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  direction: rlt;
+  font-family: 'Bree Serif', Arial, Helvetica, sans-serif;
+  background-color: #2e4057;
+}
+
+#card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -175px;
+  width: 350px;
+  height: 200px;
+  -webkit-box-shadow: 0 0 15px -1px #2f2d2e;
+          box-shadow: 0 0 15px -1px #2f2d2e;
+  border-radius: 5px;
+}
+
+#card .logo {
+  border-radius: 5px 0 0 5px;
+  background: #2b78c2;
+}
+
+#card .logo img {
+  border: 5px solid #2f2d2e;
+  border-radius: 10%;
+  opacity: .8;
+}
+
+#card .logo img:hover {
+  opacity: .9;
+}
+
+#card .info {
+  border-radius: 0 5px 5px 0;
+  color: #2b78c2;
+  background: #2f2d2e;
+}
+
+#card .info div {
+  width: 100%;
+  text-align: center;
+}
+
+#card .info h1 {
+  font-size: 22pt;
+  text-shadow: 0 0 2px #2f2d2e;
+}
+
+#card .info h2 {
+  opacity: .8;
+  font-size: 14pt;
+  text-shadow: 0 0 1px #2f2d2e;
+}
+
+.social {
+  border-top: 1px solid #2e4057;
+  margin-top: 2vh;
+  padding-top: 1vh;
+  font-size: x-large;
+  text-shadow: 0 0 1px #2f2d2e;
+}
+
+.social a {
+  margin: 1vh;
+  text-decoration: none;
+  opacity: .7;
+}
+
+.social a.linkedin {
+  color: #0077B5;
+}
+
+.social a.github {
+  color: #2fdd63;
+}
+
+.social a.gmail {
+  color: #dd4b39;
+}
+
+.social a.wordpress {
+  color: #85878d;
+}
+
+.social a:hover {
+  opacity: 1;
+  text-shadow: 0 0 3px #2f2d2e;
+}
+
+@media (min-width: 576px) {
+  #card {
+    margin-top: -100px;
+    margin-left: -225px;
+    width: 450px;
+    height: 200px;
+  }
+  #card .info {
+    border-left: 1px solid #2b78c2;
+  }
+}
+/*# sourceMappingURL=Style.css.map */

@@ -1,7 +1,15 @@
-$gr0: #80CBC4;
-$gr1: #26A69A;
-$gr2: #00897B;
-$gr3: #00796B;
+$LightSteelBlue:#fafbfb;
+$PowderBlue:#c8e9e9;
+$DarkSteelBlue:#9ccece;
+$CadetBlue:#6bb6b6;
+$DarkSlateGray:#356161;
+
+$twitter: #55acee;
+$linkedin: #0077B5;
+$instagram: #e4405f;
+$github: #356161;
+$gmail: #dd4b39;
+$cv:darkgoldenrod;
 
 html,
 body {
@@ -11,7 +19,7 @@ body {
     direction: rlt;
     font-family: "vazir", Arial, Helvetica, sans-serif;
     background-image: url(../img/bg.png);
-    background-color:  whitesmoke;
+    background-color:  $LightSteelBlue;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -22,13 +30,13 @@ body {
     padding: 0;
     height: 96vh;
     text-align: center;
-    box-shadow: 0 0 15px -1px $gr0;
+    box-shadow: 0 0 15px -1px $DarkSteelBlue;
     .card-top {
         margin: 0;
         padding: 0;
         height: 16vh;
-        background: $gr3;
-        border: 2px solid $gr2;
+        background: $DarkSlateGray;
+        border: 1px solid $DarkSlateGray;
         border-bottom: none;
         border-radius: 5px 5px 0 0;
     }
@@ -39,52 +47,37 @@ body {
         width: 120px;
         margin-left: -60px;
         margin-top: -60px;
-        border-radius: 50%;
         img {
             width: 100%;
-            border-radius: 50%;
-            border: 3px solid $gr2;
+            border: 2px solid $DarkSlateGray;
         }
     }
     .card-body {
         height: 80vh;
         background: rgba(255, 255, 255, .4);
-        color: #565656;
-        border: 2px solid $gr2;
+        color: $DarkSlateGray;
+        border: 1px solid $DarkSlateGray;
         border-top: none;
         border-radius: 0 0 5px 5px;
         h1 {
+            font-size: 25pt;
             margin-top: 10vh;
-            text-shadow: 1px 1px 3px $gr1;
-            border-bottom: 2px dashed whitesmoke;
+            text-shadow: 1px 1px 3px $CadetBlue;
+            border-bottom: 2px dashed $PowderBlue;
         }
         .social {
-            font-size: x-large;
+            font-size: xx-large;
             a {
                 margin: 1vh;
                 text-decoration: none;
                 opacity: .8;
-                &.twitter {
-                    color: #55acee;
-                }
-                &.linkedin {
-                    color: #0077B5;
-                }
-                &.instagram {
-                    color: #e4405f;
-                }
-                &.github {
-                    color: #6cc644;
-                }
-                &.gmail {
-                    color: #dd4b39;
-                }
-                &.cv {
-                    color: darkgoldenrod;
-                }
-                &:hover {
-                    opacity: 1;
-                }
+                &.twitter { color: $twitter; }
+                &.linkedin { color: $linkedin; }
+                &.instagram { color: $instagram; }
+                &.github { color: $github; }
+                &.gmail { color: $gmail; }
+                &.cv { color:$cv; }
+                &:hover { opacity: 1; }
             }
         }
         .description {
@@ -95,17 +88,18 @@ body {
             font-size: 11pt;
             line-height: 1.75;
             strong {
-                color: $gr3;
+                color: $CadetBlue;
             }
         }
         .footer {
             margin-top: 4vh;
-            a {
-                margin: 0 1vh;
-                text-decoration: none;
-                color: $gr3;
+            .btn-blog {
+                background: $CadetBlue;
+                color: white;
                 &:hover {
-                    color: $gr2;
+                    background: $DarkSlateGray;
+                    color: $PowderBlue;
+                    box-shadow: 0 0 10px 3px $PowderBlue;
                 }
             }
         }

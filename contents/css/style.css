@@ -6,7 +6,7 @@ body {
   direction: rlt;
   font-family: "vazir", Arial, Helvetica, sans-serif;
   background-image: url(../img/bg.png);
-  background-color: whitesmoke;
+  background-color: #fafbfb;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,15 +17,16 @@ body {
   padding: 0;
   height: 96vh;
   text-align: center;
-  box-shadow: 0 0 15px -1px #80CBC4;
+  -webkit-box-shadow: 0 0 15px -1px #9ccece;
+          box-shadow: 0 0 15px -1px #9ccece;
 }
 
 #card .card-top {
   margin: 0;
   padding: 0;
   height: 16vh;
-  background: #00796B;
-  border: 2px solid #00897B;
+  background: #356161;
+  border: 1px solid #356161;
   border-bottom: none;
   border-radius: 5px 5px 0 0;
 }
@@ -37,32 +38,31 @@ body {
   width: 120px;
   margin-left: -60px;
   margin-top: -60px;
-  border-radius: 50%;
 }
 
 #card .card-picture img {
   width: 100%;
-  border-radius: 50%;
-  border: 3px solid #00897B;
+  border: 2px solid #356161;
 }
 
 #card .card-body {
   height: 80vh;
   background: rgba(255, 255, 255, 0.4);
-  color: #565656;
-  border: 2px solid #00897B;
+  color: #356161;
+  border: 1px solid #356161;
   border-top: none;
   border-radius: 0 0 5px 5px;
 }
 
 #card .card-body h1 {
+  font-size: 25pt;
   margin-top: 10vh;
-  text-shadow: 1px 1px 3px #26A69A;
-  border-bottom: 2px dashed whitesmoke;
+  text-shadow: 1px 1px 3px #6bb6b6;
+  border-bottom: 2px dashed #c8e9e9;
 }
 
 #card .card-body .social {
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 #card .card-body .social a {
@@ -84,7 +84,7 @@ body {
 }
 
 #card .card-body .social a.github {
-  color: #6cc644;
+  color: #356161;
 }
 
 #card .card-body .social a.gmail {
@@ -109,21 +109,23 @@ body {
 }
 
 #card .card-body .description strong {
-  color: #00796B;
+  color: #6bb6b6;
 }
 
 #card .card-body .footer {
   margin-top: 4vh;
 }
 
-#card .card-body .footer a {
-  margin: 0 1vh;
-  text-decoration: none;
-  color: #00796B;
+#card .card-body .footer .btn-blog {
+  background: #6bb6b6;
+  color: white;
 }
 
-#card .card-body .footer a:hover {
-  color: #00897B;
+#card .card-body .footer .btn-blog:hover {
+  background: #356161;
+  color: #c8e9e9;
+  -webkit-box-shadow: 0 0 10px 3px #c8e9e9;
+          box-shadow: 0 0 10px 3px #c8e9e9;
 }
 
 @media (min-width: 360px) {
