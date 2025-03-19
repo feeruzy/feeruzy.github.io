@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feeruzy - Minimal Bilingual CV</title>
+  <!-- فونت انگلیسی (Roboto) برای نسخه انگلیسی (این تغییر در درخواست قبلی اعمال شده بود) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- فونت فارسی (Vazir) -->
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+  <!-- Font Awesome (برای استفاده از آیکون‌ها) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-u5ZAVHDZ8vLM9+w9nLGRS7h4tpHhRV6mXgS1xwjcAyj3zx0D4gh0iWLE3nLPqKW4tRaiarW0rPZqkGp9f3hF8A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ریست پایه */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      overflow: hidden;
+      font-size: 16px;
+      background: #090a0f;
+      color: #fff;
+      /* برای نسخه انگلیسی از Roboto و برای فارسی از Vazir استفاده خواهیم کرد */
+      font-family: 'Roboto', sans-serif;
+      position: relative;
+      padding-bottom: 60px; /* فضای برای فوتر */
+    }
+    /* بوم نقاشی پس‌زمینه */
+    #bg-canvas { position: fixed; top: 0; left: 0; z-index: 0; }
+    /* لایه محتوای بالا */
+    .overlay {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      text-align: center;
+      background: rgba(9,10,15,0.2);
+    }
+    /* دکمه‌های تغییر زبان */
+    .language-selector {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .language-selector button {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 0.9rem;
+    }
+    .language-selector button.active,
+    .language-selector button:hover {
+      background: #fff;
+      color: #090a0f;
+    }
+    /* استایل آواتار (Gravatar) */
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      margin-bottom: 1rem;
+    }
+    /* استایل محتوای متنی */
+    .content { display: none; max-width: 100%; }
+    .content.active { display: block; }
+    .content.en { font-family: 'Roboto', sans-serif; }
+    .content.fa { font-family: 'Vazir', sans-serif; }
+    .content h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .content p { font-size: 1.2rem; margin-bottom: 1.5rem; }
+    /* لینک‌های شبکه‌های اجتماعی */
+    .links a {
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-size: 1rem;
+    }
+    .links a:hover { background: #fff; color: #090a0f; }
+    /* فوتر */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.5);
+      font-size: 0.9rem;
+      margin-bottom: 5vh;
+      height: 8vh;
+    }
+
+
+    @media (min-width: 800px) {
+/* استایل محتوای متنی */
+.content { display: none; max-width: 90%; }
+    .content.active { display: block; }
+    .content.en { font-family: 'Roboto', sans-serif; }
+    .content.fa { font-family: 'Vazir', sans-serif; }
+    .content h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .content p { font-size: 1.2rem; margin-bottom: 1.5rem; }
+    /* لینک‌های شبکه‌های اجتماعی */
+    .links a {
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-size: 1rem;
+    }
+    .links a:hover { background: #fff; color: #090a0f; }
+    }
+
+
+    
+  </style>
+</head>
+<body>
+  <!-- بوم نقاشی پس‌زمینه -->
+  <canvas id="bg-canvas"></canvas>
+  
+  <div class="overlay">
+    <!-- دکمه‌های تغییر زبان با اضافه کردن آیکون‌ها به دکمه‌ها -->
+    <div class="language-selector">
+      <button id="btn-en" class="active" onclick="toggleLanguage('en')">
+        <i class="fa-solid fa-globe"></i> English
+      </button>
+      <button id="btn-fa" onclick="toggleLanguage('fa')">
+        <i class="fa-solid fa-language"></i> فارسی
+      </button>
+    </div>
+    
+    <!-- آواتار Gravatar: استفاده از ایمیل feeruzy@gmail.com -->
+    <img class="avatar"
+         src="https://www.gravatar.com/avatar/934efb1175a8a4c30af192b0a3fdf3f4?s=200"
+         alt="Feeruzy's Avatar">
+    
+    <!-- محتوای انگلیسی -->
+    <div id="content-en" class="content en active">
+      <h1>Farsheed Feeruzy</h1>
+      <p>Fullstack Web Developer</p>
+      <div class="links">
+        <a href="https://ir.linkedin.com/in/farsheedfeeruzy" target="_blank">LinkedIn</a>
+        <a href="mailto:feeruzy@gmail.com">Email</a>
+        <a href="https://github.com/feeruzy" target="_blank">GitHub</a>
+        <a href="http://blog.feeruzy.ir/?i=1" target="_blank">Blog</a>
+      </div>
+    </div>
+    
+    <!-- محتوای فارسی -->
+    <div id="content-fa" class="content fa" dir="rtl">
+      <h1>فرشید فیروی</h1>
+      <p>برنامه نویس و توسعه‌دهنده وب</p>
+      <div class="links">
+        <a href="https://ir.linkedin.com/in/farsheedfeeruzy" target="_blank">لینکدین</a>
+        <a href="mailto:feeruzy@gmail.com">ایمیل</a>
+        <a href="https://github.com/feeruzy" target="_blank">گیت‌هاب</a>
+        <a href="http://blog.feeruzy.ir/?i=1" target="_blank">وبلاگ</a>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    &copy; 2025 Feeruzy. All Rights Reserved.
+  </footer>
+  
+  <script>
+    // تابع تغییر زبان: نمایش محتوای مربوط به زبان انتخاب شده
+    function toggleLanguage(lang) {
+      document.getElementById('btn-en').classList.remove('active');
+      document.getElementById('btn-fa').classList.remove('active');
+      document.getElementById('content-en').classList.remove('active');
+      document.getElementById('content-fa').classList.remove('active');
+      if (lang === 'en') {
+        document.getElementById('btn-en').classList.add('active');
+        document.getElementById('content-en').classList.add('active');
+      } else {
+        document.getElementById('btn-fa').classList.add('active');
+        document.getElementById('content-fa').classList.add('active');
+      }
+    }
+    
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const numStars = 100;
+    
+    // تعریف کامِت (کامِت دنباله‌دار شبیه به هالی)
+    let comet = {
+      x: -50,
+      y: 0,
+      speed: 0.5,  // سرعت بسیار پایین‌تر
+      trail: []
+    };
+    
+    // آرایه برای ذخیره‌ی چاله‌های ماه (کراترها) به صورت یک‌باره
+    let moonCraters = [];
+    function initMoonCraters() {
+      moonCraters = [];
+      const numCraters = 2;  // تعداد چاله‌ها به ۲ تنظیم شده
+      for (let i = 0; i < numCraters; i++) {
+        let angle = Math.random() * Math.PI * 2;
+        let distance = Math.random() * 50 * 0.8;
+        let craterRadius = Math.random() * 5 + 3;
+        moonCraters.push({ angle, distance, radius: craterRadius });
+      }
+    }
+    initMoonCraters();
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      comet.y = canvas.height * 0.2;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 2 + 1,
+          speed: 0.5 + Math.random(),
+          angle: Math.random() * 2 * Math.PI
+        });
+      }
+    }
+    initStars();
+    
+    function drawStar(star) {
+      const gradient = ctx.createRadialGradient(
+        star.x,
+        star.y,
+        star.radius * 0.3,
+        star.x,
+        star.y,
+        star.radius
+      );
+      gradient.addColorStop(0, "#ffffff");
+      gradient.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.save();
+      ctx.shadowColor = "#ffffff";
+      ctx.shadowBlur = 8;
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    
+    // رسم ماه با گرادیان تیره‌تر و چاله‌های ثابت از آرایه‌ی moonCraters
+    function drawMoon() {
+      const moonX = canvas.width * 0.8;
+      const moonY = canvas.height * 0.2;
+      const moonRadius = 50;
+      ctx.save();
+      ctx.shadowColor = "#8e6e63";
+      ctx.shadowBlur = 20;
+      const moonGradient = ctx.createRadialGradient(
+        moonX,
+        moonY,
+        moonRadius * 0.1,
+        moonX,
+        moonY,
+        moonRadius
+      );
+      moonGradient.addColorStop(0, "#6e5145");
+      moonGradient.addColorStop(1, "#4e342e");
+      ctx.fillStyle = moonGradient;
+      ctx.beginPath();
+      ctx.arc(moonX, moonY, moonRadius, 0, Math.PI * 2);
+      ctx.fill();
+      // رسم چاله‌های ماه از آرایه‌ی ثابت
+      ctx.globalCompositeOperation = "destination-out";
+      for (let crater of moonCraters) {
+        let craterX = moonX + Math.cos(crater.angle) * crater.distance;
+        let craterY = moonY + Math.sin(crater.angle) * crater.distance;
+        ctx.beginPath();
+        ctx.arc(craterX, craterY, crater.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = "source-over";
+      ctx.restore();
+    }
+    
+    // رسم کامِت به همراه دنباله
+    function drawComet() {
+      comet.trail.push({ x: comet.x, y: comet.y });
+      if (comet.trail.length > 100) {
+        comet.trail.shift();
+      }
+      ctx.save();
+      for (let i = 0; i < comet.trail.length; i++) {
+        const pos = comet.trail[i];
+        const opacity = ((i + 1) / comet.trail.length) * 0.2;
+        ctx.fillStyle = `rgba(255,255,255,${opacity})`;
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+      
+      ctx.save();
+      let cometGradient = ctx.createRadialGradient(
+        comet.x,
+        comet.y,
+        0,
+        comet.x,
+        comet.y,
+        8
+      );
+      cometGradient.addColorStop(0, "#ffffff");
+      cometGradient.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = cometGradient;
+      ctx.beginPath();
+      ctx.arc(comet.x, comet.y, 8, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    
+    function animate() {
+      const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      bgGradient.addColorStop(0, "#000428");
+      bgGradient.addColorStop(1, "#004e92");
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      drawMoon();
+      
+      stars.forEach(star => {
+        star.x += Math.cos(star.angle) * star.speed * 0.1;
+        star.y += Math.sin(star.angle) * star.speed * 0.1;
+        if (star.x < 0) star.x = canvas.width;
+        if (star.x > canvas.width) star.x = 0;
+        if (star.y < 0) star.y = canvas.height;
+        if (star.y > canvas.height) star.y = 0;
+        drawStar(star);
+      });
+      
+      comet.x += comet.speed;
+      let baseY = canvas.height * 0.2;
+      let amplitude = 10;
+      let frequency = 0.02;
+      comet.y = baseY + amplitude * Math.sin(comet.x * frequency);
+      if (comet.x > canvas.width + 50) {
+        comet.x = -50;
+        comet.trail = [];
+      }
+      drawComet();
+      
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
