@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feeruzy - developer and programmer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-u5ZAVHDZ8vLM9+w9nLGRS7h4tpHhRV6mXgS1xwjcAyj3zx0D4gh0iWLE3nLPqKW4tRaiarW0rPZqkGp9f3hF8A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  
+  <div class="overlay">
+    <div class="language-selector">
+      <button id="btn-en" class="active" onclick="toggleLanguage('en')">
+        <i class="fa-solid fa-globe"></i> English
+      </button>
+      <button id="btn-fa" onclick="toggleLanguage('fa')">
+        <i class="fa-solid fa-language"></i> فارسی
+      </button>
+    </div>
+    
+    <img class="avatar" src="https://avatars.githubusercontent.com/u/4429560?v=4" alt="Feeruzy's Avatar">
+    
+    <div id="content-en" class="content en active">
+      <h1>Farsheed Feeruzy</h1>
+      <p>Fullstack Web Developer</p>
+      <div class="links">
+        <a href="https://ir.linkedin.com/in/farsheedfeeruzy" target="_blank">LinkedIn</a>
+        <a href="mailto:feeruzy@gmail.com">Email</a>
+        <a href="https://github.com/feeruzy" target="_blank">GitHub</a>
+        <a href="http://blog.feeruzy.ir/?i=1" target="_blank">Blog</a>
+      </div>
+    </div>
+    
+    <div id="content-fa" class="content fa" dir="rtl">
+      <h1>فرشید فیروی</h1>
+      <p>برنامه نویس و توسعه‌دهنده وب</p>
+      <div class="links">
+        <a href="https://ir.linkedin.com/in/farsheedfeeruzy" target="_blank">لینکدین</a>
+        <a href="mailto:feeruzy@gmail.com">ایمیل</a>
+        <a href="https://github.com/feeruzy" target="_blank">گیت‌هاب</a>
+        <a href="http://blog.feeruzy.ir/?i=1" target="_blank">وبلاگ</a>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    © 2025 Feeruzy. All Rights Reserved.
+  </footer>
+  
+  <script src="script.js"></script>
+</body>
+</html>
